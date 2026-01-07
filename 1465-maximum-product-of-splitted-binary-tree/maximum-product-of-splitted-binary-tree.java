@@ -3,13 +3,9 @@ class Solution {
     long maxProduct = 0;
     static final int MOD = 1000000007;
     public int maxProduct(TreeNode root) {
-        totalSum = dfsSum(root);   
+        totalSum = dfsProduct(root);   
         dfsProduct(root);          
         return (int)(maxProduct % MOD);
-    }
-    long dfsSum(TreeNode root) {
-        if (root == null) return 0;
-        return root.val + dfsSum(root.left) + dfsSum(root.right);
     }
     long dfsProduct(TreeNode root) {
         if (root == null) return 0;
