@@ -5,7 +5,7 @@ class Solution {
         int i = 0;
         int size = 0;
         for(int j=0;j<n;j++){
-            while(i<=j && (long)nums[j] > (long)nums[i]*k){
+            while((long)nums[j] > (long)nums[i]*k){
                 i++;
             }
             size = Math.max(size,j-i+1);
