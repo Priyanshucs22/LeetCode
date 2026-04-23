@@ -24,30 +24,28 @@ class Solution {
 
         return solve(0, 1, 0, 0, 0, 0);
     }
-
-    int solve(int idx, int tight, int mod, int even, int odd, int started) {
-        if (idx == s.length()) {
-            if (started == 1 && mod == 0 && even == odd) return 1;
+    public int solve(int idx,int tight,int mod,int e,int o,int started){
+        if(idx == s.length()){
+            if(started == 1 && mod==0 && e==o) return 1;
             return 0;
         }
-        if (dp[idx][tight][mod][even][odd][started] != -1)
-            return dp[idx][tight][mod][even][odd][started];
-        int limit = (tight == 1) ? s.charAt(idx) - '0' : 9;
+        if(dp[idx][tight][mod][e][o][started]!=-1) return dp[idx][tight][mod][e][o][started];
+        int limit = tight == 1 ? s.charAt(idx)-'0' : 9;
         int ans = 0;
-        for (int d = 0; d <= limit; d++) {
-            int nt = (tight == 1 && d == limit) ? 1 : 0;
-            int ns = started;
-            int ne = even, no = odd, nm = mod;
-            if (started == 0 && d == 0) {
+        for(int i = 0;i<=limit;i++){
+            int nt = (tight == 1 && (i==limit))?1:0;
+            int ns = started,ne = e,no = o , nm = mod;
+            if(started == 0 && i ==0){
                 ns = 0;
-            } else {
+            }
+            else{
                 ns = 1;
-                nm = (mod * 10 + d) % k;
-                if (d % 2 == 0) ne++;
+                nm = (mod*10+i)%k;
+                if (i % 2 == 0) ne++;
                 else no++;
             }
-            ans += solve(idx + 1, nt, nm, ne, no, ns);
+            ans+=solve(idx+1,nt,nm,ne,no,ns);
         }
-        return dp[idx][tight][mod][even][odd][started] = ans;
+        return dp[idx][tight][mod][e][o][started] = ans;
     }
 }
