@@ -16,7 +16,6 @@ class Solution {
             int idx = s.indexOf(d);
             int idx2 = s.indexOf(c);
             if(idx!=-1 && idx < idx2) continue;
-            System.out.println(c +" "+ d);
             ans += Math.abs(f[c] - f[d]);
         }
 
